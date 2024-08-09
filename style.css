@@ -1,0 +1,388 @@
+/* /// RESET /// */
+
+* {
+    margin: 0;
+    padding: 0;
+    font: inherit;
+}
+
+:root {
+
+    /* FONTS SIZE */
+
+    --fs--xs: clamp(0.6944rem, 0.6441rem + 0.2516vw, 0.88rem);  /* 11.11 a 14.08 px / 320 a 1500 vw */
+    --fs--s: clamp(0.8333rem, 0.761rem + 0.3616vw, 1.1rem);  /* 13.33 a 17.70 px / 320 a 1500 vw */
+    --fs-m: clamp(1rem, 0.8983rem + 0.5085vw, 1.375rem);    /* 16 a 22 px / 320 a 1500 vw */
+    --fs-xm: clamp(1.2rem, 1.0593rem + 0.7034vw, 1.7188rem);  /* 19.20 a 27.50 px / 320 a 1500 vw */
+    --fs-l: clamp(1.44rem, 1.2479rem + 0.9606vw, 2.1484rem);  /* 23.04 a 34.38 px / 320 a 1500 vw */
+    --fs-xl: clamp(1.728rem, 1.4683rem + 1.2984vw, 2.6855rem);  /* 27.65 a 42.97 px / 320 a 1500 vw */
+    --fs-xxl: clamp(2.0736rem, 1.7256rem + 1.7401vw, 3.3569rem);  /* 33.18 a 53.71 px / 320 a 1500 vw */
+    --fs-sl: clamp(2.4883rem, 2.0252rem + 2.3157vw, 4.1962rem);  /* 39.81 a 67.14 px / 320 a 1500 vw */
+
+    /* FONTS WEIGHT */
+    --fw-regular: 400;
+    --fw-bold: 700;
+
+    /* COLORS */
+    --bgc: #fff;
+    --primary: #31697e;
+    --shadow-black: rgb(48, 48, 48);
+    --shadow-grey: rgb(158, 158, 158);
+}
+
+body{
+    font-family: roboto, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-rendering: optimizeSpeed;
+    line-height: 1.5;
+}
+
+h1, h2, h3, h4, h5, h6, button, input, label {
+    font-family: 'Playfair Display','Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.1;
+}
+
+p, output {
+    text-wrap: balance;
+}
+
+img, picture, video, canvas, svg {
+    display: block;
+    max-width: 100%;
+}
+
+.container{
+    padding-inline: 5%;
+}
+
+.flow > * + * {
+    margin-block-start: 2rem;
+}
+
+.flow-small > * + * {
+    margin-block-start: 1rem;
+}
+
+/* /// HEADER /// */
+
+
+header {
+    background: linear-gradient(160deg, rgba(49,105,126,1) 65%, rgba(254,254,254,1) 65%);
+    padding-block-start: 1.5rem;
+    padding-block-end: 10%;
+}
+
+.about {
+    background-color: var(--bgc);
+}
+
+.about > p {
+    padding: 1rem;
+}
+
+.img-wrapper {
+    position: relative;
+}
+
+.portrait {
+    box-shadow: 0 0 7px var(--shadow-black);
+}
+
+.name {
+    font-size: var(--fs-sl);
+    color: var(--bgc);
+    text-wrap: nowrap;
+    position: absolute;
+    bottom: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.links {
+    text-align: center;
+}
+
+.links a img {
+    margin-inline: 0.5rem;
+    cursor: pointer;
+    transition: linear 0.1s;
+}
+
+.links a img:hover{
+    transform: scale(1.2);
+}
+
+.icon {
+    display: inline-block; 
+    width: 20px;
+}
+
+h1 {
+    font-size: var(--fs-xl);
+    font-weight: var(--fw-bold);
+    text-align: center;
+}
+
+p {
+    font-size: var(--fs-m);
+}
+
+a {
+    text-decoration: none;
+}
+
+@media (min-width: 501px) {
+
+    .about {
+        margin-block-start: 8rem;
+        padding-block: 1rem;
+        padding-inline: 2rem;
+        box-shadow: 0 0 7px var(--shadow-grey);
+    }
+}
+
+/* LO INTERESANTE DE ESTA MEDIA QUERY, ES QUE TODO LO QUE HAGO SE APLICA SOLO ENTRE 501PX Y 899PX.
+   ESTO IMPLICA QUE NO TENGO QUE "REINICIALIZAR VALORES" LUEGO, POR EJEMPLO DE 900PX EN ADELANTE.
+   LOS VALORES SERIAN LOS MISMOS A LO QUE ESTA POR FUERA DE LA MEDIA DE 501PX Y 899PX  */
+
+@media (min-width: 501px) and (max-width: 899px) {
+
+    /* cambio el padding a 10%, salvo en el footer */
+    .container:not(footer) */ {
+        padding-inline: 10%;
+    }
+
+    .portrait{
+        margin-block-end: -135px;
+        margin-inline-end: -60px;
+        margin-inline-start: 5%;
+        float: left;
+        width: max(52%, 280px);
+        position: relative;
+        top: -130px;
+        left: -80px;
+    }
+
+    .name {
+        color: black;
+        bottom: 60px;
+        transform: translateX(-50px);
+    }
+
+    .about > h1{
+        margin-block-end: 1.5rem;
+    }
+
+    header .links {
+        display: none;
+    }
+}
+
+@media (min-width: 900px) {
+
+    .about {
+        margin-block-start: 2.5rem;
+        padding-block: 1.8rem;
+        padding-inline: 0px 2rem;
+
+        display: grid;
+        grid-template-columns: .8fr 2.7% 1fr;
+        column-gap: 1rem;
+        grid-template-areas: 
+            "img . title"
+            "img . text"
+            "img . links";
+    }
+
+    .img-wrapper {
+        grid-area: img;
+        margin-inline-start: 1.2rem;
+    }
+
+    .portrait{
+        height: 100%;
+        transform: scale(1.3);
+     }
+
+    .name {
+        bottom: -12%;
+    }
+
+    .about > h1 {
+        grid-area: title;
+    }
+
+    .about p {
+        grid-area: text;
+    }
+
+    .about .links {
+        grid-area: links;
+        text-align: end;
+    }
+}
+
+
+/* /// MAIN /// */
+
+
+.project-image {
+    padding: 3.5rem;
+    margin-block-end: 1rem;
+    font-family: "Playfair Display";
+    font-size: var(--fs-xm);
+    color: var(--bgc);
+}
+
+.card {
+    box-shadow: 0 0 7px var(--shadow-grey);
+    transition: linear 0.25s;
+}
+
+.card:hover {
+    transform: scale(1.1);
+    box-shadow: 5px 5px 10px var(--shadow-grey);
+}
+
+.card > :not(.project-image, .links, h1){
+    padding: 0 1rem 1rem 1rem;
+}
+
+.card:nth-child(1) .project-image {
+    background-color: rebeccapurple;
+}
+
+.card:nth-child(2) .project-image {
+    background-color: orangered;
+}
+
+.card:nth-child(3) .project-image {
+    background-color: palevioletred;
+}
+
+.card:nth-child(4) .project-image {
+    background-color: steelblue;
+}
+
+.card:nth-child(5) .project-image {
+    background-color: rgb(51, 213, 23);
+}
+
+.card:nth-child(6) .project-image {
+    background-color: goldenrod;
+}
+
+.card div:nth-child(2) {
+    display: flex;
+}
+
+.card h2 {
+    font-weight: var(--fw-bold);
+}
+
+.card .links {
+    margin-inline-start: auto;
+}
+
+
+@media (min-width: 501px) {
+
+    /* todos los .flow que estan DENTRO de main (NO se refiere al .flow de main [main.flow]) */
+    main .flow > * + * {
+        margin-block-start: 0;
+    }
+
+    main > h1 {
+        text-align: start;
+    }
+
+    .card-wrapper {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+        gap: 1.8rem;
+    }
+}
+
+@media (min-width: 801px) {
+
+    .card-wrapper {
+        grid-template-columns: repeat(auto-fit, minmax(222px, 1fr));
+    }
+
+}
+
+/* /// FOOTER /// */
+
+footer {
+    padding-block-start: 5%;
+    background-color: var(--primary);
+    color: var(--bgc);
+}
+
+.contact-wrapper > p {
+    font-size: var(--fs-xm);
+}
+
+.contact div, .links div {
+    display: flex;
+    gap: 10px;
+}
+
+picture img {
+    width: 100%;
+}
+
+footer .links .icon {
+    width: 40px;
+    margin-block-end: 50px;
+}
+
+
+@media (max-width: 500px) {
+
+    .contact img {
+        display: none;
+    }
+}
+
+@media (min-width: 501px) {
+
+
+    footer.footer {
+        margin-block-start: 5rem;
+        display: flex;
+    }
+
+    .contact-wrapper {
+        /* aca saco el padding DERECHO que le agrega la clase container */
+        padding-inline-end: 0;
+    }
+
+    footer p, footer > .contact-wrapper p {
+        font-size: var(--fs-m)
+    }
+
+    footer h1, footer .links {
+        text-align: start;
+    }
+
+    footer .links .icon {
+        width: 30px;
+    }
+
+    picture {
+        /* le agrego el padding DERECHO, como si completara la clase container */
+        padding-inline-end: 5%;
+    }
+
+    picture img {
+        height: 90%;
+        aspect-ratio: 1/2;
+    }
+}
+
+@media (min-width: 801px) {
+
+    picture img {
+        aspect-ratio: 1/1;
+    }
+}
